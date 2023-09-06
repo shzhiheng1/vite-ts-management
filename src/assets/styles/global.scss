@@ -1,0 +1,10 @@
+// 定义变量
+$bg-color:#eee;
+
+body{
+    background-color: $bg-color;
+    user-select: none;//禁用文字选中
+}
+img{
+    -webkit-user-drag: none;//禁止图片拖动
+}
