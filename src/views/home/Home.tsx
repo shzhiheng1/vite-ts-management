@@ -1,65 +1,22 @@
 import React, { useState } from 'react';
-import  {useNavigate,Outlet} from 'react-router-dom'
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import  {Outlet} from 'react-router-dom'
+import { Breadcrumb, Layout, theme } from 'antd';
+import MainMenu from '@/component/MainMenu/index.js';
 import Styles from './Home.module.scss'
-
 const { Header, Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const items: MenuItem[] = [
-  getItem('项目1', '/page1', <PieChartOutlined />),
-  getItem('项目2', '/page2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '/user'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
-  ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
-];
-
 const Home: React.FC = () => {
-  // V6 的新写法
-  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  // 点击菜单
-  const handleMenu=(e:{key:string})=>{
-     console.log('----------',e.key)
-     navigate(e.key)
-  }
   return (
     <Layout style={{ minHeight: '100vh' }}>
       {/* 左侧栏 */}
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className={Styles.logo} />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items}  onClick={handleMenu}/>
+        <MainMenu />
       </Sider>
       {/* 右侧 */}
       <Layout>

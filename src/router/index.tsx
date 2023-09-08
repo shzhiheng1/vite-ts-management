@@ -41,6 +41,12 @@ import Page1 from '@/views/page1/Page1.js';
 const LazyAbout=lazy(()=>import('@/views/about/About.js'))
 const LazyUser=lazy(()=>import('@/views/user/User.js'))
 const LazyPage2=lazy(()=>import('@/views/page2/Page2.js'))
+const FailPage404=lazy(()=>import('@/views/fail/404Page.js'))
+const Page301=lazy(()=>import('@/views/page3/Page301.js'))
+const Page302=lazy(()=>import('@/views/page3/Page302.js'))
+const Page303=lazy(()=>import('@/views/page3/Page303.js'))
+const Page40101=lazy(()=>import('@/views/page4/Page40101.js'))
+const Page402=lazy(()=>import('@/views/page4/Page402.js'))
 
 
 // 封装懒加载loading
@@ -56,6 +62,7 @@ const routers=[
         path: "/",
         element: <Navigate to="/page1" />, //重定向到 /B 页面
   },
+  // 嵌套路由
   {
     path:'/',
     element:<Home />,
@@ -67,6 +74,26 @@ const routers=[
       {
         path: 'page2',
         element: LazyLoading(<LazyPage2 />)
+      },
+      {
+        path:'/page3/page301',
+        element:LazyLoading(<Page301 />)
+      },
+      {
+        path:'/page3/page302',
+        element:LazyLoading(<Page302 />)
+      },
+      {
+        path:'/page3/page303',
+        element:LazyLoading(<Page303 />)
+      },
+      {
+        path:'/page4/page40101',
+        element:LazyLoading(<Page40101 />)
+      },
+      {
+        path:'/page4/page402',
+        element:LazyLoading(<Page402 />)
       }
     ]
   },
@@ -76,6 +103,15 @@ const routers=[
   },{
     path:'/user',
     element:LazyLoading(<LazyUser />)
+  },
+  {
+    path:'/404',
+    element:LazyLoading(<FailPage404 />)
+  },
+  // 未匹配到路由
+  {
+    path:'*',
+    element:<Navigate to='/404' />
   }
 ]
 export default routers
