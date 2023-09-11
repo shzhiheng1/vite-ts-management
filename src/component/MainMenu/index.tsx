@@ -81,7 +81,6 @@ const MainMenu:React.FC=()=>{
   const currentRoute=useLocation()
     // 点击菜单
   const handleMenu=(e:{key:string})=>{
-       console.log('----------',e.key)
        navigate(e.key)
   }
     // 只展开一项
@@ -107,13 +106,12 @@ const MainMenu:React.FC=()=>{
     // 如果没有找到父节点，则返回null
     return '';
   }
-  console.log(getParentNodeId(items,currentRoute.pathname))
+  // console.log(getParentNodeId(items,currentRoute.pathname))
   // 仅适用于两层菜单
   firestOpenKey=getParentNodeId(items,currentRoute.pathname)
   // 展开项
   const [openKeys,setOpenkeys]=useState([firestOpenKey])
   const handleOpenChange=(keys:string[])=>{
-    console.log(keys)
     // 数组中只含有最后一项(只适用于两层菜单)
     const lastValue = keys.pop()||'';
     setOpenkeys([lastValue]) 

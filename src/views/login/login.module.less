@@ -1,0 +1,17 @@
+.titleDivider{
+        &::before{
+            position: relative;
+            width: 50%;
+            transform: translateY(50%);
+            height: 2px;
+            content: '';
+            background: linear-gradient(to right, blue, pink);
+        }
+        :global{
+            .ant-divider-inner-text{
+                color: greenyellow;
+            }
+        }
+    
+    
+}

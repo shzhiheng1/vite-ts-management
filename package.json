@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
     "antd": "^5.8.5",
+    "less": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.8",

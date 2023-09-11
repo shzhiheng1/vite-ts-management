@@ -1,0 +1,61 @@
+$color:#1677ff;
+.loginPage{
+    background-color:#e6f4ff;
+    height: 100vh;
+    position: relative;
+    .lgoinBox{
+        width: 320px;
+        height: 400px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-160px,-200px);
+        // 重写antd组件样式
+        .titleDivider{
+                &::before,&::after{
+                    position: relative;
+                    width: 50%;
+                    transform: translateY(50%);
+                    height: 2px;
+                    content: '';
+                    background: linear-gradient(to right, pink, #1677ff);
+                }
+                &::after{
+                    background: linear-gradient(to right,#1677ff, pink );
+                }
+                // module模块作用域的情况下需要添加，全局不需要;less和scss写法相同
+                :global{
+                    .ant-divider-inner-text{
+                        color: #1677ff;
+                        font-weight: bold;
+                    }
+                }
+        }
+        .inputStyle{
+            :global{
+                .ant-input,.ant-input-affix-wrapper{
+                    background-color: rgba(0,0,0,0);
+                    color:$color;
+                    height: 38px;
+                }
+                .ant-input-affix-wrapper{
+                   padding: 0px 11px;
+                }
+                .anticon.ant-input-password-icon:hover{
+                    color:$color 
+                }
+            }
+        }
+        .loginCode{
+            display: flex;
+            .loginCodeImg{
+                margin-left: 20px;
+                width: 100px;
+                height: 38px;
+                display: inline-block;
+                cursor: pointer;
+            }
+        }
+        
+    }
+}

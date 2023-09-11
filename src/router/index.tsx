@@ -37,8 +37,8 @@ import Home from "@/views/home/Home.js"
 
 // 懒加载 lazy
 import  {lazy,Suspense} from 'react';
+import Login from '@/views/login/Login.js';
 import Page1 from '@/views/page1/Page1.js';
-const LazyAbout=lazy(()=>import('@/views/about/About.js'))
 const LazyUser=lazy(()=>import('@/views/user/User.js'))
 const LazyPage2=lazy(()=>import('@/views/page2/Page2.js'))
 const FailPage404=lazy(()=>import('@/views/fail/404Page.js'))
@@ -98,8 +98,8 @@ const routers=[
     ]
   },
   {
-    path:'/about',
-    element: LazyLoading(<LazyAbout />),
+    path:'/Login',
+    element: <Login />,
   },{
     path:'/user',
     element:LazyLoading(<LazyUser />)
