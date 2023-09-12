@@ -22,10 +22,17 @@ import '@/assets/styles/global.scss'
 /***********数组式路由调用********************/ 
 import App from './App.tsx'
 import { BrowserRouter} from 'react-router-dom'
+// 使用redux状态管理
+import {Provider} from 'react-redux'
+import store from '@/store/index.js'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>
+  ,
 )
