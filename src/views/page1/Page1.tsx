@@ -1,5 +1,6 @@
 import { Button } from 'antd'
 import {useSelector,useDispatch} from 'react-redux'
+import counterStore from '@/store/counterReducer/index.js'
 // import {RootState} from '@/types/store.js'
 
 export default function Page1() {
@@ -11,7 +12,17 @@ export default function Page1() {
     }
   ))
   const handleClick=()=>{
-    dispatch({type:'add1'})
+    // 同步
+    // dispatch({type:'add1'})
+    // 异步 redux-thunk的用法格式：dispath(异步执行函数)
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    // dispatch((dis:Function)=>{
+    //   setTimeout(() => {
+    //     dis({type:'add1'})
+    //   }, 2000);
+    // })
+    // 第二种写法
+    dispatch(counterStore.asyncAction.asyncAdd1)
     // dispatch({type:'add2',val:10})
   }
   const handleClickArr=()=>{

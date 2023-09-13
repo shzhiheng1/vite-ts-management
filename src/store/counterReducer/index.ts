@@ -12,6 +12,14 @@ const store={
             newstate.num+=action.val
         }
     },
+    asyncAction:{
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        asyncAdd1(dispatch:Function){
+           setTimeout(()=>{
+            dispatch({type:'add1'})
+           },2000)
+        }
+    },
     actionNames:{}
 }
 
