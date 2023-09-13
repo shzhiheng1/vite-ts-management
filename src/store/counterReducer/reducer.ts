@@ -1,6 +1,6 @@
 import store from './index.js'
 
-const reducer=(state={...store.state},action:{type:string,val:number})=>{
+const reducer=(state={...store.state},action:{type:string,[propKey:string]:unknown})=>{
      // 深copy
    const newState=JSON.parse(JSON.stringify(state))
    for (const key in store.actionNames) {
@@ -10,6 +10,5 @@ const reducer=(state={...store.state},action:{type:string,val:number})=>{
         }
    }
    return newState
-
 }
 export default reducer
