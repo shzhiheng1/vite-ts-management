@@ -20,11 +20,15 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports":true,
+    "suppressImplicitAnyIndexErrors":true,
+
     /* @别名提示*/ 
     "baseUrl": "./",
     "paths": {
       "@/*":["src/*"],
     },
+
+
     
   },
   // "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
