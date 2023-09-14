@@ -1,13 +1,16 @@
 
-import { Button, Divider,Input,Space } from 'antd'
+import { Button, Divider,Input,Space,message } from 'antd'
 import { ChangeEvent, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import styles from './Login.module.scss'
 // import hello from './login.module.less'
 
 export default function Login() {
+  const navigateTo=useNavigate();
   const [username,setUsername]=useState('')
   const [password,setPassword]=useState('')
   const [code,setCode]=useState('')
+  
 
   // change事件
   const usernameChange=(e:ChangeEvent<HTMLInputElement>)=>{
@@ -20,7 +23,12 @@ export default function Login() {
     setCode(e.target.value)
   }
   const goToLogin=()=>{
-    console.log('用户名：'+username,'密码：'+password,'验证码：'+code)
+    if(!username.trim()||!password.trim()||!code.trim()){
+      return message.warning('请把信息填写完整！')
+    }
+    // 存储token并跳转到page1
+    localStorage.setItem('vite-ts-management-token','123456789')
+    navigateTo('/page1')
   }
   return (
     <div className={styles.loginPage}>
