@@ -9,7 +9,8 @@
     "build:uat": "tsc && vite build --mode uat",
     "build": "tsc && vite build --mode prod",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prettier": "prettier --write src/*"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
@@ -33,6 +34,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "3.0.0-alpha.6",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.66.1",
     "typescript": "^5.0.2",
