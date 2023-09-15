@@ -7,7 +7,7 @@ export default function Page1() {
   const dispatch = useDispatch()
   const { num, arr } = useSelector((state: RootState) => ({
     num: state.counterReducer.num,
-    arr: state.arrReducer.arr,
+    arr: state.arrReducer.arr
   }))
   const handleClick = () => {
     // 同步

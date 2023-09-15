@@ -6,4 +6,6 @@ module.exports = {
   singleQuote: true, //单引号
   bracketSpacing: true, //内容间距，如{ name }
   bracketSameLine: false, //如：/>不放在同一行
+  trailingComma: 'none', //去掉对象属性的最后一个 ,
+  endOfLine: 'auto' //不校验最后一行的结尾。
 }
