@@ -20,6 +20,10 @@ module.exports = {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true }
-    ]
+    ],
+    // 关闭any校验
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off'
+    }
   }
 }

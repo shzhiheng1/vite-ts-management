@@ -9,8 +9,7 @@ import '@/assets/styles/global.scss'
 // 组件
 // import './index.css'
 
-
-/*********组件式路由调用***********/ 
+/*********组件式路由调用***********/
 // import BaseRouter from '@/router/index.js'
 // ReactDOM.createRoot(document.getElementById('root')!).render(
 //   <React.StrictMode>
@@ -19,11 +18,11 @@ import '@/assets/styles/global.scss'
 //   </React.StrictMode>,
 // )
 
-/***********数组式路由调用********************/ 
+/***********数组式路由调用********************/
 import App from './App.js'
-import { BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 // 使用redux状态管理
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import store from '@/store/index.js'
 
 // 环境变量
@@ -37,5 +36,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </BrowserRouter>
     </React.StrictMode>
   </Provider>
-  ,
 )

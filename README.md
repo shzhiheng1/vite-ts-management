@@ -64,3 +64,4 @@ import {StepForwardOutlined} from '@ant-design/icons'
 6. react-redux redux ,状态管理的封装。但是目前这种做法非常规做法。
 7. 格式化工具：prettier和 校验工具eslint的配合使用
 8. JOSN TO TS 工具，将json 转为 ts 类型
+9. 代码片段配置。https://99cc.vip/vscode。或https://snippet-generator.app/
