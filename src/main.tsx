@@ -23,7 +23,10 @@ import App from './App.js'
 import { BrowserRouter } from 'react-router-dom'
 // 使用redux状态管理
 import { Provider } from 'react-redux'
-import store from '@/store/index.js'
+// 第一种方法：使用reudx
+// import store from '@/store/index.js'
+// 第二种方法：使用@reduxjs/toolkit
+import store from '@/reduxjsToolkitStore/store.js'
 
 // 环境变量
 console.log(import.meta.env)

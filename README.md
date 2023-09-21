@@ -62,6 +62,7 @@ import {StepForwardOutlined} from '@ant-design/icons'
 4. 使用路由懒加载的时候，注意：lazy和Suspense一起使用。
 5. react-router-dom V6使用 useNavigate进行路由跳转
 6. react-redux redux ,状态管理的封装。但是目前这种做法非常规做法。
+   redux官方推荐使用@reduxjs/toolket。在本项目中也做了实例
 7. 格式化工具：prettier和 校验工具eslint的配合使用
 8. JOSN TO TS 工具，将json 转为 ts 类型
 9. 代码片段配置。https://99cc.vip/vscode。或https://snippet-generator.app/

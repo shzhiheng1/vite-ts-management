@@ -37,7 +37,7 @@ import Home from '@/views/home/Home.js'
 // 懒加载 lazy
 import { lazy, Suspense } from 'react'
 import Login from '@/views/login/Login.js'
-import Page1 from '@/views/page1/Page1.js'
+// import Page1 from '@/views/page1/Page1.js'
 const LazyUser = lazy(() => import('@/views/user/User.js'))
 const LazyPage2 = lazy(() => import('@/views/page2/Page2.js'))
 const FailPage404 = lazy(() => import('@/views/fail/404Page.js'))
@@ -79,17 +79,17 @@ const routers: RouteObject[] = [
   {
     //配置默认路由
     path: '/',
-    element: <Navigate to="/page1" /> //重定向到 /B 页面
+    element: <Navigate to="/page2" /> //重定向到 /B 页面
   },
   // 嵌套路由
   {
     path: '/',
     element: <Home />,
     children: [
-      {
-        path: 'page1',
-        element: LazyLoading(<Page1 />)
-      },
+      // {
+      //   path: 'page1',
+      //   element: LazyLoading(<Page1 />)
+      // },
       {
         path: 'page2',
         element: LazyLoading(<LazyPage2 />)

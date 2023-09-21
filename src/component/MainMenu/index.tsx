@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import {
   DesktopOutlined,
   FileOutlined,
-  PieChartOutlined,
+  // PieChartOutlined,
   TeamOutlined,
   UserOutlined
 } from '@ant-design/icons'
@@ -21,18 +21,18 @@ interface node {
 }
 
 const items: node[] = [
+  // {
+  //   label: '传统redux的使用',
+  //   key: '/page1',
+  //   icon: <PieChartOutlined />
+  // },
   {
-    label: '栏目1',
-    key: '/page1',
-    icon: <PieChartOutlined />
-  },
-  {
-    label: '栏目2',
+    label: 'reduxjs/toolkit的使用',
     key: '/page2',
     icon: <DesktopOutlined />
   },
   {
-    label: '栏目3',
+    label: '功能学习',
     key: 'page3',
     icon: <UserOutlined />,
     children: [
