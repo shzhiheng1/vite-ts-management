@@ -47,6 +47,7 @@ const Page303 = lazy(() => import('@/views/page3/Page303.js'))
 const Page40101 = lazy(() => import('@/views/page4/Page40101.js'))
 const Page402 = lazy(() => import('@/views/page4/Page402.js'))
 const Discover = lazy(() => import('@/views/discover/index.js'))
+const Remcommend = lazy(() => import('@/views/discover/recommend/index.js'))
 const Demo = lazy(() => import('@/views/demo/index.js'))
 
 // 封装懒加载loading
@@ -117,6 +118,10 @@ const routers: RouteObject[] = [
       {
         path: '/demo',
         element: LazyLoading(<Demo />)
+      },
+      {
+        path: '/discover/recommend',
+        element: LazyLoading(<Remcommend />)
       }
     ]
   },

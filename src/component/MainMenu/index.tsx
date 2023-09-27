@@ -73,6 +73,17 @@ const items: node[] = [
     ]
   },
   {
+    label: '发现',
+    key: 'discover',
+    icon: <FileOutlined></FileOutlined>,
+    children: [
+      {
+        label: '精品推荐',
+        key: '/discover/recommend'
+      }
+    ]
+  },
+  {
     label: '测试demo',
     key: '/demo',
     icon: <FileOutlined />
