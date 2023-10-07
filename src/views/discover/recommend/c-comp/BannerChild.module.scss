@@ -1,0 +1,100 @@
+.bannerBox {
+  position: relative;
+  overflow: hidden;
+  .slider {
+    height: 285px;
+    position: relative;
+    .itemImg {
+      height: 285px;
+      width: 730px;
+    }
+    // 广告
+    .advertisement {
+      background: url('https://s2.music.126.net/style/web2/img/index/download.jpg?f35e57a66344337417cc764fee3fc366');
+      width: 255px;
+      height: 285px;
+      position: absolute;
+      left: 730px;
+      top: 0px;
+    }
+    // 左右按钮
+    .nextBtn {
+      position: absolute;
+      left: 1000px;
+      top: 111px;
+    }
+    .preBtn {
+      position: absolute;
+      left: -52px;
+      top: 111px;
+    }
+    .arrows {
+      width: 37px;
+      height: 63px;
+      // background-color: #f00;
+      display: flex;
+
+      &Icon {
+        color: #fff;
+        font-size: 36px;
+      }
+    }
+    .arrows:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    // 小点点
+    .dotsList {
+      width: 730px;
+      position: absolute;
+      bottom: 20px;
+      > ul {
+        display: flex;
+        justify-content: center;
+        > li {
+          width: 16px;
+          height: 16px;
+          margin: 0px 10px;
+          border-radius: 50% 50%;
+          background-color: rgba(0, 0, 0, 0.6);
+        }
+        .active {
+          background-color: #fff;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+  // .advertisement {
+  //   background: url('https://s2.music.126.net/style/web2/img/index/download.jpg?f35e57a66344337417cc764fee3fc366');
+  //   width: 255px;
+  //   height: 285px;
+  //   position: absolute;
+  //   left: 730px;
+  //   top: 0px;
+  // }
+  // .nextBtn {
+  //   position: absolute;
+  //   left: 1000px;
+  //   top: 111px;
+  // }
+  // .preBtn {
+  //   position: absolute;
+  //   left: -52px;
+  //   top: 111px;
+  // }
+  // .arrows {
+  //   width: 37px;
+  //   height: 63px;
+  //   // background-color: #f00;
+  //   display: flex;
+
+  //   &Icon {
+  //     color: #fff;
+  //     font-size: 36px;
+  //   }
+  // }
+  // .arrows:hover {
+  //   background-color: rgba(0, 0, 0, 0.6);
+  // }
+}

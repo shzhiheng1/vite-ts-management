@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client'
 // 样式初始化(放在最前面)
 import 'reset-css'
 // 框架样式
+/*****轮播图react-slick一起使用slick-carousel样式引入******/
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 // 全局样式
 import '@/assets/styles/global.scss'
