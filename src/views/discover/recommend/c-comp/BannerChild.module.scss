@@ -31,9 +31,7 @@
     .arrows {
       width: 37px;
       height: 63px;
-      // background-color: #f00;
       display: flex;
-
       &Icon {
         color: #fff;
         font-size: 36px;
@@ -65,36 +63,20 @@
       }
     }
   }
-  // .advertisement {
-  //   background: url('https://s2.music.126.net/style/web2/img/index/download.jpg?f35e57a66344337417cc764fee3fc366');
-  //   width: 255px;
-  //   height: 285px;
-  //   position: absolute;
-  //   left: 730px;
-  //   top: 0px;
-  // }
-  // .nextBtn {
-  //   position: absolute;
-  //   left: 1000px;
-  //   top: 111px;
-  // }
-  // .preBtn {
-  //   position: absolute;
-  //   left: -52px;
-  //   top: 111px;
-  // }
-  // .arrows {
-  //   width: 37px;
-  //   height: 63px;
-  //   // background-color: #f00;
-  //   display: flex;
-
-  //   &Icon {
-  //     color: #fff;
-  //     font-size: 36px;
-  //   }
-  // }
-  // .arrows:hover {
-  //   background-color: rgba(0, 0, 0, 0.6);
-  // }
 }
+
+// .bannerBox::before {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   z-index: 1;
+//   height: 100%;
+//   width: 100%;
+//   background-image: url('http://p1.music.126.net/JDfVY0Jo-De7LoXLrN-YLQ==/109951168966448580.jpg'); //图片不能动态
+//   /*background-size: 100% 100%;*/
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   -webkit-filter: blur(4px);
+//   filter: blur(4px);
+// }

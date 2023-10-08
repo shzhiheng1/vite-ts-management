@@ -1,4 +1,19 @@
 import axios from 'axios'
+// 处理 类型"AxiosResponse<any,any>"上不存在xxx属性
+// declare module 'axios' {
+//   interface AxiosInstance {
+//     (config: AxiosRequestConfig): Promise<any>
+//   }
+// }
+declare module 'axios' {
+  interface AxiosResponse<T = any> {
+    code: number
+    result?: any
+    banners?: any
+    // 这里追加你的参数
+  }
+  export function create(config?: AxiosRequestConfig): AxiosInstance
+}
 // 网易云http://codercba.com:9002/top/mv
 // 环境变量
 const baseURL =

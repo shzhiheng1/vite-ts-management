@@ -4,7 +4,9 @@
 //     message: string;
 //     captchaEnabled: boolean;
 //   }
-/*******获取banner******/
+
+/****************发现-推荐页面*********************/
+//获取banner
 interface BannerObject {
   banners: Banner[]
   code: number
