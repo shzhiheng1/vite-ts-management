@@ -3,4 +3,33 @@
   min-height: 100px;
   border-right: 1px solid #999;
   padding: 20px 20px 40px;
+  .hot {
+    .hotContent {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 140px 140px 140px 140px;
+      row-gap: 42px;
+      column-gap: 43px;
+      margin-top: 20px;
+      > li {
+        width: 140px;
+        .musicCard_title {
+          margin: 8px 0 3px;
+          > a {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+          }
+          > a:hover {
+            color: #000;
+            text-decoration: underline;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+  }
+  .new {
+    margin-top: 20px;
+  }
 }

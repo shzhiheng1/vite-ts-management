@@ -17,7 +17,7 @@ export const Wrap = styled.div`
         border: 3px solid #c10d0c;
         border-radius: 50%;
         margin: 0 auto;
-        transform: translateY(12px);
+        transform: translateY(14px);
       }
     }
     .header {
@@ -29,18 +29,21 @@ export const Wrap = styled.div`
       }
       &-keywords {
         margin-left: 18px;
-        > a {
-          font-size: 14px;
-          color: #999;
+        display: flex;
+        &-item {
+          a {
+            font-size: 14px;
+            color: #999;
+          }
+          a:hover {
+            color: #666;
+            text-decoration: underline;
+          }
+          span {
+            margin: 0 10px;
+          }
         }
-        > a:hover {
-          color: #666;
-          text-decoration: underline;
-        }
-        > span {
-          margin: 0 10px;
-        }
-        > span:last-child {
+        &-item:last-child > span {
           display: none;
         }
       }

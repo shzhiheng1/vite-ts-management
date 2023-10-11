@@ -1,0 +1,50 @@
+.musicCard {
+  width: 140px;
+  height: 140px;
+  border: 1px solid #ccc;
+  position: relative;
+  &_img {
+    width: 100%;
+    height: 100%;
+  }
+  > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &_bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 27px;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #ccc;
+    &_left {
+      &_icon {
+        font-size: 14px;
+      }
+      &_text {
+        padding-left: 6px;
+        font-size: 12px;
+      }
+    }
+    &_right {
+      background-image: url('@/assets/image/iconall.png');
+      background-position: 0px 0px;
+      width: 17px;
+      height: 17px;
+    }
+    &_right:hover {
+      background-image: url('@/assets/image/iconall.png');
+      background-position: -20px -60px;
+      width: 17px;
+      height: 17px;
+    }
+  }
+}

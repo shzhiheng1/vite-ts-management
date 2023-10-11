@@ -4,9 +4,30 @@ import {
   getPersonalized
 } from '@/api/modules/discover/recommend.js'
 
-const initialState = {
+// 定义类型，数组不想定义类型时可以设置为any,只是在使用时无提示
+interface hotObj {
+  id: number
+  type: number
+  name: string
+  copywriter: string
+  picUrl: string
+  canDislike: boolean
+  trackNumberUpdateTime: number
+  playCount: number
+  trackCount: number
+  highQuality: boolean
+  alg: string
+}
+interface stateType {
+  message: string
+  banners: any[]
+  hotRecommend: hotObj[]
+}
+
+const initialState: stateType = {
   message: '旺旺',
   banners: [],
+  // hotRecommend: [] as any[]
   hotRecommend: []
 }
 

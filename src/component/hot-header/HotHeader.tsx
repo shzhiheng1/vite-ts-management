@@ -22,15 +22,14 @@ const HotHeader: FC<Iprops> = (props) => {
         <div className="header">
           <h3>{title}</h3>
           <div className="header-keywords">
-            {keywords &&
-              keywords.map((item) => {
-                return (
-                  <>
-                    <Link to={item.link}>{item.keyword}</Link>
-                    <span>|</span>
-                  </>
-                )
-              })}
+            {keywords?.map((item) => {
+              return (
+                <div className="header-keywords-item" key={item.keyword}>
+                  <Link to={item.link}>{item.keyword}</Link>
+                  <span>|</span>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
