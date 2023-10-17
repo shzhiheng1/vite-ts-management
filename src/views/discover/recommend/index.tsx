@@ -4,7 +4,8 @@ import { shallowEqual, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import {
   getAsyncBanners,
-  getAsyncPersonalized
+  getAsyncPersonalized,
+  getAsyncAlbulms
 } from '@/reduxjsToolkitStore/modules/discover/recommendSlice.js'
 import BannerChild from './c-comp/BannerChild.js'
 import ContentLeft from './c-comp/content-left/ContentLeft.js'
@@ -18,9 +19,8 @@ interface Iprops {
 
 const Remcommend: FC<Iprops> = () => {
   const dispatch = useDispatch()
-  const { message, banners } = useAppSelector((state) => {
+  const { banners } = useAppSelector((state) => {
     return {
-      message: state.recommend.message,
       banners: state.recommend.banners
     }
   }, shallowEqual)
@@ -30,11 +30,12 @@ const Remcommend: FC<Iprops> = () => {
     dispatch(getAsyncBanners())
     // 获取热门推荐的数据
     dispatch(getAsyncPersonalized(8))
+    // 获取新碟上架数据
+    dispatch(getAsyncAlbulms())
   }, [])
 
   return (
     <div>
-      <p>{message}</p>
       <BannerChild bannerData={banners} />
       <div className={classNames(['wrap1', styles.content])}>
         <ContentLeft />

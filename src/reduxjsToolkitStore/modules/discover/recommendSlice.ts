@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   getRecommendBanner,
-  getPersonalized
+  getPersonalized,
+  getAlbumNewest
 } from '@/api/modules/discover/recommend.js'
 
 // 定义类型，数组不想定义类型时可以设置为any,只是在使用时无提示
@@ -22,13 +23,15 @@ interface stateType {
   message: string
   banners: any[]
   hotRecommend: hotObj[]
+  albums: any[]
 }
 
 const initialState: stateType = {
   message: '旺旺',
   banners: [],
   // hotRecommend: [] as any[]
-  hotRecommend: []
+  hotRecommend: [],
+  albums: []
 }
 
 /*****************开始创建切片**********************/
@@ -41,6 +44,9 @@ const recommendSlice = createSlice({
     },
     changeHotRecommend(state, action) {
       state.hotRecommend = action.payload
+    },
+    changeAlbums(state, action) {
+      state.albums = action.payload
     }
   }
 })
@@ -70,8 +76,20 @@ export const getAsyncPersonalized = createAsyncThunk(
     dispatch(changeHotRecommend(response.result))
   }
 )
+
+// 获取新碟商上架数据
+export const getAsyncAlbulms = createAsyncThunk(
+  'recommend/ablulmNewest',
+  async (_, { dispatch }) => {
+    const res = await getAlbumNewest()
+    if (res.code === 200) {
+      dispatch(changeAlbums(res.albums))
+    }
+  }
+)
 /*****************异步处理结束*****************************/
 
-export const { changeBanners, changeHotRecommend } = recommendSlice.actions
+export const { changeBanners, changeHotRecommend, changeAlbums } =
+  recommendSlice.actions
 
 export default recommendSlice.reducer

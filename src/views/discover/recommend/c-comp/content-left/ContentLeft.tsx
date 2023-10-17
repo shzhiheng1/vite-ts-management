@@ -3,6 +3,7 @@ import styles from './ContentLeft.module.scss'
 
 import HotHeader from '@/component/hot-header/HotHeader.js'
 import MusicCard from '@/component/music-card/MusicCard.js'
+import NewDisc from '../new-disc/NewDisc.js'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '@/reduxjsToolkitStore/store.js'
 
@@ -57,6 +58,7 @@ const ContentLeft: FC<Iprops> = () => {
       </div>
       <div className={styles.new}>
         <HotHeader title="新碟上架" moreLink="/" />
+        <NewDisc />
       </div>
     </div>
   )

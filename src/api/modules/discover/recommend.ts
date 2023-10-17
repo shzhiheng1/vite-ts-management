@@ -19,3 +19,10 @@ export const getPersonalized = (limit = 30) => {
     }
   })
 }
+// 新碟上架
+export const getAlbumNewest = () => {
+  return server.request({
+    url: '/album/newest',
+    method: 'post'
+  })
+}

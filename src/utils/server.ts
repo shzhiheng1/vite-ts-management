@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { message } from 'antd'
 // 处理 类型"AxiosResponse<any,any>"上不存在xxx属性
 // declare module 'axios' {
 //   interface AxiosInstance {
@@ -10,6 +11,7 @@ declare module 'axios' {
     code: number
     result?: any
     banners?: any
+    albums?: any
     // 这里追加你的参数
   }
   export function create(config?: AxiosRequestConfig): AxiosInstance
@@ -53,6 +55,7 @@ server.interceptors.response.use(
   },
   // 失败，任何超出2xx范围的状态码都会触发此函数
   (error) => {
+    message.error('数据请求失败，请稍后再试！')
     return Promise.reject(error)
   }
 )
