@@ -53,7 +53,9 @@ function Page1() {
 function BeforeRouteEnter() {
   const element = useRoutes(routers)
   // const navigateTo=useNavigate()
-  const token = localStorage.getItem('vite-ts-management-token') || ''
+  // const token = localStorage.getItem('vite-ts-management-token') || ''
+  const token = sessionStorage.getItem('vite-ts-management-token') || ''
+
   const location = useLocation()
   /*******第一种写法*********/
   // useEffect(()=>{

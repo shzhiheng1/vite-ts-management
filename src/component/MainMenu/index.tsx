@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import { Menu } from 'antd'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useAppSelector } from '@/reduxjsToolkitStore/store.js'
+
 import {
   DesktopOutlined,
   FileOutlined,
@@ -90,6 +92,12 @@ const items: node[] = [
   }
 ]
 const MainMenu: React.FC = () => {
+  const { menus } = useAppSelector((state) => ({
+    menus:
+      state.user.menus.length > 0
+        ? state.user.menus
+        : JSON.parse(sessionStorage.getItem('menus') as string)
+  }))
   // V6 的新写法
   const navigate = useNavigate()
   // 严格模式下开发环境会调用两次
@@ -138,7 +146,8 @@ const MainMenu: React.FC = () => {
       // 选中
       defaultSelectedKeys={[currentRoute.pathname]}
       mode="inline"
-      items={items}
+      // items={items}
+      items={menus}
       onClick={handleMenu}
       // 展开关闭回调
       onOpenChange={handleOpenChange}

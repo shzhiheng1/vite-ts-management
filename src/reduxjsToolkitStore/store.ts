@@ -3,10 +3,12 @@ import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import amountReducer from './amount/amountSlice.js'
 import recommendReducer from './modules/discover/recommendSlice.js'
+import userReducer from './modules/user/userSlice.js'
 const store = configureStore({
   reducer: {
     amount: amountReducer,
-    recommend: recommendReducer
+    recommend: recommendReducer,
+    user: userReducer
   }
 })
 

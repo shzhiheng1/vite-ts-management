@@ -30,7 +30,7 @@
  *
  * **/
 import { Navigate, RouteObject } from 'react-router-dom'
-import Home from '@/views/home/Home.js'
+import Layout from '@/views/layout/Layout.js'
 
 // import About from "@/views/about/About.js"
 
@@ -85,7 +85,7 @@ const routers: RouteObject[] = [
   // 嵌套路由
   {
     path: '/',
-    element: <Home />,
+    element: <Layout />,
     children: [
       // {
       //   path: 'page1',

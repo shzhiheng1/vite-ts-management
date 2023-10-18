@@ -60,6 +60,9 @@ const ContentLeft: FC<Iprops> = () => {
         <HotHeader title="新碟上架" moreLink="/" />
         <NewDisc />
       </div>
+      <div className={styles.rank}>
+        <HotHeader title="榜单" moreLink="/" />
+      </div>
     </div>
   )
 }
