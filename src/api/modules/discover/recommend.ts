@@ -26,3 +26,13 @@ export const getAlbumNewest = () => {
     method: 'post'
   })
 }
+// 飙升榜/新歌绑/原创绑
+export const getPlaylistDetail = (id: number) => {
+  return server.request({
+    url: '/playlist/detail',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}

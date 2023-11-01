@@ -25,7 +25,7 @@ const baseURL =
 // 创建axios实例
 const server = axios.create({
   baseURL,
-  timeout: 5000,
+  timeout: 30000,
   withCredentials: true, // 异步请求携带cookie
   headers: { 'Content-type': 'application/json;charset=UTF-8' }
 })

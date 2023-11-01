@@ -1,0 +1,67 @@
+.rank {
+  background-color: #eee;
+  margin-top: 20px;
+  display: flex;
+  border: 1px solid #aaa;
+  &_item {
+    width: 230px;
+    overflow: hidden;
+    &_head {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      padding-left: 30px;
+      > img {
+        width: 80px;
+        height: 80px;
+      }
+      &_text {
+        padding-left: 10px;
+        > h2 {
+          font-weight: 700;
+          font-size: 16px;
+          color: #333;
+        }
+        > p {
+          height: 40px;
+          width: 120px;
+          line-height: 40px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+    &_list {
+      > li {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 35px;
+        cursor: pointer;
+      }
+      > li:nth-child(odd) {
+        background-color: rgba($color: #000000, $alpha: 0.05);
+      }
+      > li:nth-child(even) {
+        background-color: rgba($color: #000000, $alpha: 0.15);
+      }
+      > li:last-child {
+        padding-right: 20px;
+        text-align: end;
+      }
+      > li > i {
+        margin-right: 15px;
+      }
+      > li:nth-child(-n + 3) > i {
+        color: red;
+      }
+      > li:hover > span {
+        text-decoration: underline;
+      }
+    }
+  }
+  &_item:nth-child(2) {
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+  }
+}

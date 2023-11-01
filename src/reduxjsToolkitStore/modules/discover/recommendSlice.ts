@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   getRecommendBanner,
   getPersonalized,
-  getAlbumNewest
+  getAlbumNewest,
+  getPlaylistDetail
 } from '@/api/modules/discover/recommend.js'
 
 // 定义类型，数组不想定义类型时可以设置为any,只是在使用时无提示
@@ -24,6 +25,7 @@ interface stateType {
   banners: any[]
   hotRecommend: hotObj[]
   albums: any[]
+  palyListData: any[]
 }
 
 const initialState: stateType = {
@@ -31,7 +33,8 @@ const initialState: stateType = {
   banners: [],
   // hotRecommend: [] as any[]
   hotRecommend: [],
-  albums: []
+  albums: [],
+  palyListData: []
 }
 
 /*****************开始创建切片**********************/
@@ -47,6 +50,9 @@ const recommendSlice = createSlice({
     },
     changeAlbums(state, action) {
       state.albums = action.payload
+    },
+    changePlayListData(state, action) {
+      state.palyListData = action.payload
     }
   }
 })
@@ -87,9 +93,31 @@ export const getAsyncAlbulms = createAsyncThunk(
     }
   }
 )
+
+// 异步获取榜单数据：飙升榜：19723756，新歌绑：3779629，原创榜：2884035
+export const getAsyncPlayListData = createAsyncThunk(
+  'recommend/playList',
+  (_, { dispatch }) => {
+    let promises: Promise<any>[] = []
+    ;[19723756, 3779629, 2884035].forEach((element) => {
+      promises.push(getPlaylistDetail(element))
+    })
+    // Promise.all返回结果是有顺序的数组
+    Promise.all(promises).then((res) => {
+      const playListData = res.map((item) => item.playlist)
+      console.log(playListData)
+      dispatch(changePlayListData(playListData))
+    })
+  }
+)
+
 /*****************异步处理结束*****************************/
 
-export const { changeBanners, changeHotRecommend, changeAlbums } =
-  recommendSlice.actions
+export const {
+  changeBanners,
+  changeHotRecommend,
+  changeAlbums,
+  changePlayListData
+} = recommendSlice.actions
 
 export default recommendSlice.reducer

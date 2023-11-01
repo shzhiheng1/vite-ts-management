@@ -92,12 +92,13 @@ const items: node[] = [
   }
 ]
 const MainMenu: React.FC = () => {
-  const { menus } = useAppSelector((state) => ({
+  let { menus } = useAppSelector((state) => ({
     menus:
       state.user.menus.length > 0
         ? state.user.menus
         : JSON.parse(sessionStorage.getItem('menus') as string)
   }))
+  // menus?.map((item: any) => (item.icon = <UserOutlined />))
   // V6 的新写法
   const navigate = useNavigate()
   // 严格模式下开发环境会调用两次

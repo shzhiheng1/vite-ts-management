@@ -4,6 +4,7 @@ $bg-color: #eee;
 body {
   background-color: $bg-color;
   user-select: none; //禁用文字选中
+  font-size: 14px;
 }
 img {
   -webkit-user-drag: none; //禁止图片拖动

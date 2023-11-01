@@ -6,6 +6,7 @@ import MusicCard from '@/component/music-card/MusicCard.js'
 import NewDisc from '../new-disc/NewDisc.js'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '@/reduxjsToolkitStore/store.js'
+import RankList from '../rank-list/RankList.js'
 
 interface Iprops {
   children?: ReactNode
@@ -62,6 +63,7 @@ const ContentLeft: FC<Iprops> = () => {
       </div>
       <div className={styles.rank}>
         <HotHeader title="榜单" moreLink="/" />
+        <RankList />
       </div>
     </div>
   )

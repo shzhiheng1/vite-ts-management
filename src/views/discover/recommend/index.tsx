@@ -5,7 +5,8 @@ import classNames from 'classnames'
 import {
   getAsyncBanners,
   getAsyncPersonalized,
-  getAsyncAlbulms
+  getAsyncAlbulms,
+  getAsyncPlayListData
 } from '@/reduxjsToolkitStore/modules/discover/recommendSlice.js'
 import BannerChild from './c-comp/BannerChild.js'
 import ContentLeft from './c-comp/content-left/ContentLeft.js'
@@ -32,6 +33,8 @@ const Remcommend: FC<Iprops> = () => {
     dispatch(getAsyncPersonalized(8))
     // 获取新碟上架数据
     dispatch(getAsyncAlbulms())
+    // 获取榜单数据
+    dispatch(getAsyncPlayListData())
   }, [])
 
   return (
