@@ -1,0 +1,68 @@
+.player {
+  width: 100%;
+  height: 50px;
+  background: rgba($color: #000000, $alpha: 0.7);
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  &_left {
+    display: flex;
+    padding-left: 20px;
+    &_iconL,
+    &_iconR {
+      font-size: 20px;
+      color: rgba($color: #fff, $alpha: 0.8);
+      cursor: pointer;
+    }
+    &_iconC {
+      font-size: 30px;
+      color: #fff;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+  }
+  &_content {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    > img {
+      width: 34px;
+      height: 34px;
+      border-radius: 3px;
+    }
+    &_right {
+      padding-left: 20px;
+      color: #fff;
+      &_slider {
+        display: flex;
+        align-items: center;
+        &_line {
+          width: 360px;
+          margin: 6px 0px 0px 0px;
+          :global {
+            .ant-slider-handle::after {
+              box-shadow: 0 0 0 2px red;
+            }
+            .ant-slider-handle:focus::after,
+            .ant-slider-handle:hover::after {
+              box-shadow: 0 0 0 4px yellowgreen;
+            }
+          }
+        }
+        &_time {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+  &_right {
+    padding-left: 20px;
+    display: flex;
+    svg {
+      color: #fff;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Breadcrumb, Layout, theme } from 'antd'
 import MainMenu from '@/component/MainMenu/index.js'
+import Player from '../player/Player.js'
 import Styles from './Layout.module.scss'
 const { Header, Content, Footer, Sider } = Layout
 
@@ -48,6 +49,7 @@ const Home: React.FC = () => {
         >
           Ant Design ©2023 Created by Ant UED
         </Footer>
+        <Player />
       </Layout>
     </Layout>
   )

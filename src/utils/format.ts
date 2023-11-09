@@ -16,3 +16,17 @@ export function formatImage(
 ) {
   return url + `?param=${width}x${height}`
 }
+/***********时间格式转换*********/
+export function formatTime(timestamp: number) {
+  // 187058毫秒----->  03:07
+  // const minutes = Math.floor(timestamp / 1000 / 60) //3分钟
+  // const seconds = Math.floor((timestamp / 1000) % 60) //7秒
+  // 187秒----->03:07
+  const minutes = Math.floor(timestamp / 60) //3分钟
+  const seconds = Math.floor(timestamp % 60) //7秒
+  // 转为字符串并补'0'
+  const timeStr =
+    String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0')
+  if (!timestamp) '00:00'
+  return timeStr
+}
