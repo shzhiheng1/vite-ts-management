@@ -2,11 +2,7 @@ import { FC, ReactNode, memo } from 'react'
 import styles from './RankList.module.scss'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '@/reduxjsToolkitStore/store.js'
-import {
-  changeSongId,
-  getAsyncSongUrl,
-  getAsyncSongDetail
-} from '@/reduxjsToolkitStore/modules/player/playerSlice.js'
+import { getAsyncSongDetail } from '@/reduxjsToolkitStore/modules/player/playerSlice.js'
 
 interface Iprops {
   children?: ReactNode
@@ -21,8 +17,6 @@ const RankList: FC<Iprops> = () => {
   // 点击获取歌曲id和url
   const handleSong = (id: number) => {
     return () => {
-      dispatch(changeSongId(id))
-      dispatch(getAsyncSongUrl(id))
       dispatch(getAsyncSongDetail(id))
     }
   }

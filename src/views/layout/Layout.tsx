@@ -37,6 +37,7 @@ const Home: React.FC = () => {
           style={{ margin: '16px 16px 0px', background: colorBgContainer }}
         >
           <Outlet />
+          <Player />
         </Content>
         {/* 底部 */}
         <Footer
@@ -49,7 +50,6 @@ const Home: React.FC = () => {
         >
           Ant Design ©2023 Created by Ant UED
         </Footer>
-        <Player />
       </Layout>
     </Layout>
   )

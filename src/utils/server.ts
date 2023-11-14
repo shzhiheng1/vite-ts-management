@@ -13,6 +13,7 @@ declare module 'axios' {
     banners?: any
     albums?: any
     songs?: any
+    lrc?: any
     // 这里追加你的参数
   }
   export function create(config?: AxiosRequestConfig): AxiosInstance

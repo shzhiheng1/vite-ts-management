@@ -1,5 +1,5 @@
 .player {
-  width: 100%;
+  width: calc(100% - 200px - 32px);
   height: 50px;
   background: rgba($color: #000000, $alpha: 0.7);
   position: fixed;
@@ -65,4 +65,12 @@
       height: 20px;
     }
   }
+}
+.alert {
+  width: 100%;
+  height: 40px;
+  position: fixed;
+  text-align: center;
+  width: calc(100% - 200px - 32px);
+  bottom: 60px;
 }

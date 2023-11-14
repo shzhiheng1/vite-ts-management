@@ -1,76 +1,65 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getSongUrl, getSongDetail } from '@/api/modules/player/palyer.js'
+import {
+  getSongUrl,
+  getSongDetail,
+  getSongLyric
+} from '@/api/modules/player/palyer.js'
+import { formatLyrics } from '@/utils/format.js'
+import { message } from 'antd'
 
 interface Istate {
-  songId: number //歌曲id
-  songUrl: string //歌曲的url
   songDetail: any //哥区详情
   songList: any[] //歌曲播放列表
 }
 const initialState: Istate = {
-  songId: 0,
-  songUrl: '',
   songDetail: {},
   songList: []
 }
 
-//
 /*******创建切片********/
 const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    changeSongId(state, { payload }) {
-      state.songId = payload
-    },
-    changeSongUrl(state, { payload }) {
-      state.songUrl = payload
-    },
     changeSongDetail(state, { payload }) {
       state.songDetail = payload
+    },
+    changeSongList(state, { payload }) {
+      // 不存在列表中的数据放入列表中
+      const findIndex = state.songList.findIndex(
+        (item) => item.id === payload.id
+      )
+      if (findIndex === -1) {
+        state.songList.push(payload)
+      }
     }
   }
 })
 
-/**********异步处理***********/
-// 异步获取歌曲URL
-export const getAsyncSongUrl = createAsyncThunk(
-  '/songUrl',
-  (id: number, { dispatch }) => {
-    getSongUrl(id)
-      .then((res) => {
-        if (res.code === 200) {
-          const _data = res.data
-          dispatch(changeSongUrl(_data[0].url || ''))
-        } else {
-          console.log('---获取歌曲url失败！---')
-        }
-      })
-      .catch((err) => {
-        console.log('---获取歌曲url失败！---', err)
-      })
-  }
-)
 // 异步获取歌曲详情
 export const getAsyncSongDetail = createAsyncThunk(
   '/songDetail',
-  (id: number, { dispatch }) => {
-    getSongDetail(id)
-      .then((res) => {
-        if (res.code === 200) {
-          console.log(res)
-          dispatch(changeSongDetail(res.songs[0]))
-        } else {
-          console.log('---获取歌曲详情失败！---')
-        }
-      })
-      .catch((err) => {
-        console.log('---获取歌曲详情失败！---', err)
-      })
+  async (id: number, { dispatch }) => {
+    try {
+      const resultDetail = await getSongDetail(id)
+      const resultUrl = await getSongUrl(id)
+      const resultLrc = await getSongLyric(id)
+      let song = resultDetail.songs[0]
+      song['url'] = resultUrl.data[0].url || ''
+      // 添加歌词到当前音乐和列表
+      const lyric = formatLyrics(resultLrc.lrc.lyric)
+      song['lyric'] = lyric || []
+      // 当前歌曲详情
+      dispatch(changeSongDetail(song))
+      // 歌曲列表
+      dispatch(changeSongList(song))
+    } catch (error) {
+      message.error('歌单获取失败！', 3000)
+      console.log('----歌单获取失败-----', error)
+    }
   }
 )
 // actions
-export const { changeSongId, changeSongUrl, changeSongDetail } =
-  playerSlice.actions
+export const { changeSongDetail, changeSongList } = playerSlice.actions
 // reducer
 export default playerSlice.reducer

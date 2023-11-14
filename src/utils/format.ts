@@ -30,3 +30,34 @@ export function formatTime(timestamp: number) {
   if (!timestamp) '00:00'
   return timeStr
 }
+
+// 转换歌词
+export function formatLyrics(data: string) {
+  interface Iitem {
+    time: number
+    content: string
+  }
+  // 根据\n转为数组
+  const lines = data.split('\n')
+  const reg = /\[(\d{2})\:(\d{2})\.(\d{2})\]\s*(.+)/
+  let resetList: Iitem[] = []
+  for (let i = 0; i < lines.length; i++) {
+    ;(function (index) {
+      const line = lines[index]
+      const matches = reg.exec(line)
+      if (matches) {
+        const m = parseFloat(matches[1])
+        const s = parseFloat(matches[2])
+        const ms = parseFloat(matches[3])
+        const content = matches[4]
+        const time = m * 60 * 1000 + s * 1000 + ms
+        const obj: Iitem = {
+          time,
+          content
+        }
+        resetList.push(obj)
+      }
+    })(i)
+  }
+  return resetList
+}
