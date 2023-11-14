@@ -6,7 +6,16 @@ import {
   RightCircleOutlined,
   createFromIconfontCN
 } from '@ant-design/icons'
-import { Tooltip, Slider, Space, Alert, Popover, List, Avatar } from 'antd'
+import {
+  Tooltip,
+  Slider,
+  Space,
+  Alert,
+  Popover,
+  List,
+  Avatar,
+  message
+} from 'antd'
 import { useAppSelector } from '@/reduxjsToolkitStore/store.js'
 import { changeSongDetail } from '@/reduxjsToolkitStore/modules/player/playerSlice.js'
 import { formatTime } from '@/utils/format.js'
@@ -63,6 +72,8 @@ const Player: FC<Iprops> = () => {
   const [isLyric, setIsLyric] = useState(false)
   // 当前行的歌词
   const [lineLyric, setLineLyric] = useState('暂无歌词！')
+  // 播放类型
+  const [playerType, setPlayerTyppe] = useState(0) //0循环，1随机，2单曲
 
   // 上一曲
   const handlePrevious = () => {
@@ -89,6 +100,8 @@ const Player: FC<Iprops> = () => {
       const index = songList.findIndex((item) => item.id === songDetail.id)
       if (index < songList.length - 2) {
         dispatch(changeSongDetail(songList[index + 1]))
+      } else {
+        dispatch(changeSongDetail(songList[0]))
       }
     }
   }
@@ -100,9 +113,9 @@ const Player: FC<Iprops> = () => {
       return Math.floor(item.time / 1000) > currentTime
     })
     if (findIndex === -1) {
-      setLineLyric(lines.slice(-1))
+      setLineLyric(lines.slice(-1).content || '暂无歌词！')
     } else {
-      setLineLyric(lines[findIndex - 1].content)
+      setLineLyric(lines[findIndex - 1]?.content || '暂无歌词！')
     }
   }
   // 播放时间更新
@@ -115,12 +128,43 @@ const Player: FC<Iprops> = () => {
     // 更改进度条： (1000*  30/187)/10,  为了保留一位小数配合步长0.5
     const pro = Math.ceil((1000 * time) / (songDetail.dt / 1000)) / 10
     setProgress(pro)
-    // 动态获取歌词
-    showLineLyric()
+    if (isLyric) {
+      // 动态获取歌词
+      showLineLyric()
+    }
   }
   // 歌曲播放结束
   const timeEnded = () => {
-    setIsPalying(false)
+    // 循环
+    if (playerType === 0) {
+      // 下一曲
+      handleNext()
+    } else if (playerType === 1) {
+      // 随机
+      const length = songList.length
+      //  0~length-1
+      const random = Math.round(Math.random() * (length - 1))
+      dispatch(changeSongDetail(songList[random]))
+    }
+
+    setIsPalying(true)
+    setCurrentTime(0)
+    audioRef.current?.load()
+    audioRef.current!.currentTime = 0
+    // audioRef.current?.play()
+    // 解决浏览器获取音乐和视频资源是Promise异步的问题
+    fetchVideoAndPlay()
+  }
+  // 异步获取数据并播放()
+  function fetchVideoAndPlay() {
+    fetch(songDetail.url)
+      .then((response) => {
+        console.log(response)
+        return audioRef.current?.play()
+      })
+      .catch((e) => {
+        message.error(e)
+      })
   }
   // 点击进度条松开鼠标时候触发
   const handleMouseUp = (value: number) => {
@@ -153,10 +197,9 @@ const Player: FC<Iprops> = () => {
     setIsLyric(true)
   }
 
-  //包房
+  //副作用函数
   useEffect(() => {
-    // audioRef.current.src=''
-    // console.log(audioRef.current)
+    // 调用音乐资源加载。。。
   }, [])
 
   // 点击播放列表
@@ -184,6 +227,47 @@ const Player: FC<Iprops> = () => {
       />
     )
   }
+
+  // 播放类型展示(巧妙的使用了Space的分割属性)
+  const PlayerTypeElement = () => {
+    if (playerType === 1) {
+      return (
+        <Tooltip title="随机播放">
+          <IconFont
+            type="icon-xunhuanbofang1"
+            onClick={changePlayerType}
+          ></IconFont>
+        </Tooltip>
+      )
+    } else if (playerType === 2) {
+      return (
+        <Tooltip title="单机循环">
+          <IconFont
+            type="icon-danquxunhuan_32"
+            onClick={changePlayerType}
+          ></IconFont>
+        </Tooltip>
+      )
+    } else {
+      return (
+        <Tooltip title="顺序循环">
+          <IconFont
+            type="icon-bofang-xunhuanbofang1"
+            onClick={changePlayerType}
+          ></IconFont>
+        </Tooltip>
+      )
+    }
+  }
+  // 改变播放类型
+  const changePlayerType = () => {
+    if (playerType === 2) {
+      setPlayerTyppe(0)
+    } else {
+      setPlayerTyppe((state) => state + 1)
+    }
+  }
+
   return (
     <>
       <div className={styles.player}>
@@ -234,13 +318,10 @@ const Player: FC<Iprops> = () => {
           </div>
         </div>
         <div className={styles.player_right}>
-          <Space>
+          <Space split={PlayerTypeElement()}>
             <Tooltip title="歌词">
               <IconFont type="icon-geci" onClick={handleShowLyric}></IconFont>
             </Tooltip>
-            <IconFont type="icon-danquxunhuan_32"></IconFont>
-            <IconFont type="icon-bofang-xunhuanbofang1"></IconFont>
-            <IconFont type="icon-xunhuanbofang1"></IconFont>
             <Popover title="播放列表" content={playerList}>
               <IconFont type="icon-liebiao"></IconFont>
             </Popover>
