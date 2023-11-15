@@ -39,7 +39,7 @@ export function formatLyrics(data: string) {
   }
   // 根据\n转为数组
   const lines = data.split('\n')
-  const reg = /\[(\d{2})\:(\d{2})\.(\d{2})\]\s*(.+)/
+  const reg = /\[(\d{2})\:(\d{2})\.(\d{2,3})\]\s*(.+)/
   let resetList: Iitem[] = []
   for (let i = 0; i < lines.length; i++) {
     ;(function (index) {

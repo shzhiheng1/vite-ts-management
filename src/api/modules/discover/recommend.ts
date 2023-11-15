@@ -36,3 +36,14 @@ export const getPlaylistDetail = (id: number) => {
     }
   })
 }
+
+// 歌曲搜索
+export const getSearchSuggest = (keywords: string) => {
+  return server.request({
+    url: '/search/suggest',
+    method: 'get',
+    params: {
+      keywords
+    }
+  })
+}
