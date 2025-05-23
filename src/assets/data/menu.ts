@@ -32,11 +32,11 @@ export const items: item[] = [
         key: '/page3/page301'
       },
       {
-        label: '栏目3-01',
+        label: '栏目3-02',
         key: '/page3/page302'
       },
       {
-        label: '栏目3-01',
+        label: '栏目3-03',
         key: '/page3/page303'
       }
     ]

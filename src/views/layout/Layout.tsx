@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Breadcrumb, Layout, theme } from 'antd'
+import { Layout, theme } from 'antd'
 import MainMenu from '@/component/MainMenu/index.js'
+import LayoutHeader from './components/LayoutHeader/LayoutHeader.js'
 import Player from '../player/Player.js'
 import Styles from './Layout.module.scss'
 const { Header, Content, Footer, Sider } = Layout
@@ -27,10 +28,7 @@ const Home: React.FC = () => {
       <Layout>
         {/* 头部 */}
         <Header style={{ paddingLeft: '16px', background: colorBgContainer }}>
-          <Breadcrumb style={{ lineHeight: '64px' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+          <LayoutHeader />
         </Header>
         {/* 内容 */}
         <Content

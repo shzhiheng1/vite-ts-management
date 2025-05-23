@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "NodeNext", 
+    "moduleResolution": "NodeNext",
     // "allowImportingTsExtensions":false,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -19,17 +19,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports":true,
-    "suppressImplicitAnyIndexErrors":true,
-
-    /* @别名提示*/ 
+    "allowSyntheticDefaultImports": true,
+    /* @别名提示*/
     "baseUrl": "./",
     "paths": {
-      "@/*":["src/*"],
-    },
-
-
-    
+      "@/*": ["src/*"]
+    }
   },
   // "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "include": ["src"],

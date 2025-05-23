@@ -18,6 +18,11 @@ const userSlice = createSlice({
     changeMenus(state, { payload }) {
       state.menus = payload
       sessionStorage.setItem('menus', JSON.stringify(payload))
+    },
+    removeMenus(state) {
+      state.menus = []
+      sessionStorage.removeItem('menus')
+      sessionStorage.removeItem('vite-ts-management-token')
     }
   }
 })
@@ -62,5 +67,5 @@ export const getAsyncMenus = createAsyncThunk(
   }
 )
 
-export const { changeMenus } = userSlice.actions
+export const { changeMenus, removeMenus } = userSlice.actions
 export default userSlice.reducer
