@@ -1,6 +1,6 @@
 import { Button, Divider, Input, Space, message } from 'antd'
 import { ChangeEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './Login.module.scss'
 // import hello from './login.module.less'
 import { useDispatch } from 'react-redux'
@@ -8,6 +8,7 @@ import { getAsyncMenus } from '@/reduxjsToolkitStore/modules/user/userSlice.js'
 
 export default function Login() {
   const navigateTo = useNavigate()
+  const location = useLocation()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [code, setCode] = useState('')
@@ -32,8 +33,9 @@ export default function Login() {
     sessionStorage.setItem('vite-ts-management-token', '123456789')
     // 获取菜单
     dispatch(getAsyncMenus({ loginType: username }))
-    // 回到首页
-    navigateTo('/')
+    // 原路径返回或回到首页
+    const path = location.state?.from?.pathname || '/'
+    navigateTo(path, { replace: true })
   }
   return (
     <div className={styles.loginPage}>

@@ -33,16 +33,15 @@ import routers from './router/index.js'
 
 function Login() {
   const navigateTo = useNavigate()
-
+  const location = useLocation()
   useEffect(() => {
-    //  1.token存在，且访问登录页面，跳转到page1
-    navigateTo('/login')
+    //  1.token不存在时跳转到登录页面,并记录来源路径，登录后可返回。
+    navigateTo('/login', { state: { from: location }, replace: true })
   }, [])
   return <div></div>
 }
 function Page1() {
   const navigateTo = useNavigate()
-
   useEffect(() => {
     //  1.token存在，且访问登录页面，跳转到page1
     navigateTo('/page2')

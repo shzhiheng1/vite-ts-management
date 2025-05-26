@@ -49,6 +49,9 @@ const Page402 = lazy(() => import('@/views/page4/Page402.js'))
 const Discover = lazy(() => import('@/views/discover/index.js'))
 const Remcommend = lazy(() => import('@/views/discover/recommend/index.js'))
 const Demo = lazy(() => import('@/views/demo/index.js'))
+const MusicDetail = lazy(
+  () => import('@/views/discover/recommend/music-detail/index')
+)
 
 // 封装懒加载loading
 const LazyLoading = (comp: JSX.Element) => (
@@ -93,7 +96,8 @@ const routers: RouteObject[] = [
       // },
       {
         path: 'page2',
-        element: LazyLoading(<LazyPage2 />)
+        element: LazyLoading(<LazyPage2 />),
+        index: true //默认地址
       },
       {
         path: '/page3/page301',
@@ -122,6 +126,10 @@ const routers: RouteObject[] = [
       {
         path: '/discover/recommend',
         element: LazyLoading(<Remcommend />)
+      },
+      {
+        path: '/discover/recommend/musicDetail/:id',
+        element: LazyLoading(<MusicDetail />)
       }
     ]
   },

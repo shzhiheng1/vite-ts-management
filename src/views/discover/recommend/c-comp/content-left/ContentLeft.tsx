@@ -50,7 +50,11 @@ const ContentLeft: FC<Iprops> = () => {
               <li key={item.id}>
                 <MusicCard {...item} />
                 <div className={styles.musicCard_title}>
-                  <Link to={'/'}>{item.name}</Link>
+                  <Link
+                    to={`/discover/recommend/musicDetail/${item.id}?name=${item.name}`}
+                  >
+                    {item.name}
+                  </Link>
                 </div>
               </li>
             )
