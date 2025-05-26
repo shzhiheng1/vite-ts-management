@@ -50,7 +50,7 @@ const Discover = lazy(() => import('@/views/discover/index.js'))
 const Remcommend = lazy(() => import('@/views/discover/recommend/index.js'))
 const Demo = lazy(() => import('@/views/demo/index.js'))
 const MusicDetail = lazy(
-  () => import('@/views/discover/recommend/music-detail/index')
+  () => import('@/views/discover/recommend/music-detail/MusicDetail.js')
 )
 
 // 封装懒加载loading
