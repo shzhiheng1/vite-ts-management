@@ -19,10 +19,16 @@ declare module 'axios' {
   export function create(config?: AxiosRequestConfig): AxiosInstance
 }
 // 网易云http://codercba.com:9002/top/mv
-// 环境变量
+// 环境变量(由于前端部署时使用netlify，只支持https，不支持http，所有prod也需要netlify中代理)
+// 正常
+// const baseURL =
+//   import.meta.env.MODE === 'prod'
+//     ? import.meta.env.VITE_APP_BASE_URL
+//     : import.meta.env.VITE_APP_PROXY_URL
+// 被netlify中代理
 const baseURL =
   import.meta.env.MODE === 'prod'
-    ? import.meta.env.VITE_APP_BASE_URL
+    ? import.meta.env.VITE_APP_PROXY_URL
     : import.meta.env.VITE_APP_PROXY_URL
 // 创建axios实例
 const server = axios.create({

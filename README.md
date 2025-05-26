@@ -70,4 +70,5 @@ import {StepForwardOutlined} from '@ant-design/icons'
 ### 前端部署使用了netlify自动化工具。
 
 1. 部署分支prod；
-2. 部署网址：https://prod--warm-raindrop-bd6c2d.netlify.app/login
+2. 部署命令 git push
+3. 部署网址：https://prod--warm-raindrop-bd6c2d.netlify.app/login
