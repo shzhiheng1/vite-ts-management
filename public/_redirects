@@ -1,2 +1,5 @@
 # 配置netlify的代理，解决http的问题
 /api/*  http://codercba.com:9002/:splat  200
+
+# 解决刷新页面，页面丢失的问题。
+/*  /index.html 200
