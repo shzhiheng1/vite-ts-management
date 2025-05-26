@@ -1,0 +1,2 @@
+# 配置netlify的代理，解决http的问题
+/api/*  http://codercba.com:9002/:splat  200
