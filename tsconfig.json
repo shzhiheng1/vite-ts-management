@@ -3,11 +3,11 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "NodeNext",
+    "module": "ESNext",
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "node",
     // "allowImportingTsExtensions":false,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -28,5 +28,6 @@
   },
   // "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "include": ["src"],
+  "exclude": ["src/store/"], //使用 exclude 配置跳过类型检查
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -17,7 +17,7 @@ export function findNameByPath<T extends MenuInter>(
         return true
       }
       //   去第二层寻找，递归2,3,4层
-      if (node.children && dfs(node.children)) {
+      if (node.children && dfs(node.children as T[])) {
         // 匹配到就停止
         return true
       }

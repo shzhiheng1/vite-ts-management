@@ -2,7 +2,7 @@
   "compilerOptions": {
     "composite": true,
     "skipLibCheck": true,
-    "module": "ESNext",
+    "module": "Node18",
     "moduleResolution": "Node16",
     "allowSyntheticDefaultImports": true
   },
