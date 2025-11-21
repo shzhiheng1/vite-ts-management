@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { Layout, theme } from 'antd'
 import MainMenu from '@/component/MainMenu/index.js'
 import LayoutHeader from './components/LayoutHeader/LayoutHeader.js'
-import Player from '../player/Player.js'
+// import Player from '../player/Player.js'
 import Styles from './Layout.module.scss'
 const { Header, Content, Footer, Sider } = Layout
 
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
           style={{ margin: '16px 16px 0px', background: colorBgContainer }}
         >
           <Outlet />
-          <Player />
+          {/* <Player /> */}
         </Content>
         {/* 底部 */}
         <Footer

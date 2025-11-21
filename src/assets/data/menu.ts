@@ -38,6 +38,22 @@ export const items: item[] = [
       {
         label: '栏目3-03',
         key: '/page3/page303'
+      },
+      {
+        label: 'useLayoutEffect',
+        key: '/study/useLayoutEffect'
+      },
+      {
+        label: 'useRef',
+        key: '/study/useRef'
+      },
+      {
+        label: 'useMemo',
+        key: '/study/useMemo'
+      },
+      {
+        label: 'useCallback',
+        key: '/study/useCallback'
       }
     ]
   },

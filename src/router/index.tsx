@@ -37,6 +37,7 @@ import Layout from '@/views/layout/Layout.js'
 // 懒加载 lazy
 import { lazy, Suspense } from 'react'
 import Login from '@/views/login/Login.js'
+import UseCallback from '@/views/study/useCallback/UseCallback'
 // import Page1 from '@/views/page1/Page1.js'
 const LazyUser = lazy(() => import('@/views/user/User.js'))
 const LazyPage2 = lazy(() => import('@/views/page2/Page2.js'))
@@ -52,6 +53,12 @@ const Demo = lazy(() => import('@/views/demo/index.js'))
 const MusicDetail = lazy(
   () => import('@/views/discover/recommend/music-detail/MusicDetail.js')
 )
+const UseLayoutEffect = lazy(
+  () => import('@/views/study/useLayoutEffect/UseLayoutEffect.js')
+)
+const UseRef = lazy(() => import('@/views/study/useRef/UseRef.js'))
+const UseMemo = lazy(() => import('@/views/study/useMemo/UseMemo'))
+const useCallback = lazy(() => import('@/views/study/useCallback/UseCallback'))
 
 // 封装懒加载loading
 const LazyLoading = (comp: JSX.Element) => (
@@ -130,6 +137,22 @@ const routers: RouteObject[] = [
       {
         path: '/discover/recommend/musicDetail/:id',
         element: LazyLoading(<MusicDetail />)
+      },
+      {
+        path: '/study/useLayoutEffect',
+        element: LazyLoading(<UseLayoutEffect />)
+      },
+      {
+        path: '/study/useRef',
+        element: LazyLoading(<UseRef />)
+      },
+      {
+        path: '/study/useMemo',
+        element: LazyLoading(<UseMemo />)
+      },
+      {
+        path: '/study/useCallback',
+        element: LazyLoading(<UseCallback />)
       }
     ]
   },
