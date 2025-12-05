@@ -1,18 +1,17 @@
-// import {
-//   DesktopOutlined,
-//   FileOutlined,
-//   // PieChartOutlined,
-//   TeamOutlined,
-//   UserOutlined
-// } from '@ant-design/icons'
-interface item {
+export type IconKey =
+  | 'DesktopOutlined'
+  | 'UserOutlined'
+  | 'TeamOutlined'
+  | 'FileOutlined'
+
+export interface MenuItem {
   label: string
   key: string
-  icon?: React.ReactNode
-  children?: item[]
+  icon?: IconKey
+  children?: MenuItem[]
 }
 
-export const items: item[] = [
+export const items: MenuItem[] = [
   // {
   //   label: '传统redux的使用',
   //   key: '/page1',
@@ -20,12 +19,13 @@ export const items: item[] = [
   // },
   {
     label: 'reduxjs/toolkit的使用',
-    key: '/page2'
+    key: '/page2',
+    icon: 'DesktopOutlined'
   },
   {
     label: '功能学习',
     key: 'page3',
-    // icon: <UserOutlined />,
+    icon: 'UserOutlined',
     children: [
       {
         label: '栏目3-01',
@@ -60,19 +60,18 @@ export const items: item[] = [
   {
     label: '栏目4',
     key: 'page4',
-    // icon: <TeamOutlined />,
+    icon: 'TeamOutlined',
     children: [
-      // {
-      //   label:'栏目4-01',
-      //   key:'page401',
-      //   icon:<FileOutlined />,
-      //   children:[
-      //      {
-      //        label:'栏目4-01-01',
-      //        key:'/page4/page40101',
-      //      }
-      //   ]
-      // },
+      {
+        label:'栏目4-01',
+        key:'page401',
+        children:[
+           {
+             label:'栏目4-01-01',
+             key:'/page4/page40101',
+           }
+        ]
+      },
       {
         label: '栏目4-02',
         key: '/page4/page402'
@@ -82,7 +81,7 @@ export const items: item[] = [
   {
     label: '发现',
     key: 'discover',
-    // icon: <FileOutlined></FileOutlined>,
+    icon: 'FileOutlined',
     children: [
       {
         label: '精品推荐',
@@ -92,7 +91,7 @@ export const items: item[] = [
   },
   {
     label: '测试demo',
-    key: '/demo'
-    // icon: <FileOutlined />
+    key: '/demo',
+    icon: 'FileOutlined'
   }
 ]

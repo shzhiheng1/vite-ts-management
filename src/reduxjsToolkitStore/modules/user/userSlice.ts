@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { items } from '@/assets/data/menu.js'
+import { items, type MenuItem } from '@/assets/data/menu.js'
 
 interface IdefultInt {
-  menus: any[]
+  menus: MenuItem[]
   routers: any[]
 }
 // 初始state
@@ -27,15 +27,16 @@ const userSlice = createSlice({
   }
 })
 
-const menusData = [
+const menusData: MenuItem[] = [
   {
     label: 'reduxjs/toolkit的使用',
-    key: '/page2'
+    key: '/page2',
+    icon: 'DesktopOutlined'
   },
   {
     label: '发现',
     key: 'discover',
-    // icon: <FileOutlined></FileOutlined>,
+    icon: 'FileOutlined',
     children: [
       {
         label: '精品推荐',
