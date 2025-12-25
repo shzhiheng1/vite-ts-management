@@ -20,9 +20,12 @@ const Home: React.FC = () => {
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
+        className={Styles.sider}
       >
         <div className={Styles.logo} />
-        <MainMenu />
+        <div className={Styles.menuContainer}>
+          <MainMenu />
+        </div>
       </Sider>
       {/* 右侧 */}
       <Layout>
@@ -31,12 +34,12 @@ const Home: React.FC = () => {
           <LayoutHeader />
         </Header>
         {/* 内容 */}
-        <Content
-          style={{ margin: '16px 16px 0px', background: colorBgContainer }}
-        >
-          <Outlet />
-          {/* <Player /> */}
-        </Content>
+        <div className={Styles.mainContainer} style={{ margin: '8px 8px 0px', background: colorBgContainer }}>
+          <Content>
+              <Outlet />
+              {/* <Player /> */}
+          </Content>
+        </div>     
         {/* 底部 */}
         <Footer
           style={{

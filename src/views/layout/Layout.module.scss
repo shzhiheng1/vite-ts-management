@@ -3,3 +3,79 @@
     height: 64px;
     background-color: beige;
 }
+
+.sider {
+    // 让Sider的内容区域可以滚动
+    :global(.ant-layout-sider-children) {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 48px);
+        overflow: hidden;
+    }
+}
+
+.menuContainer {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    // 自定义滚动条样式 - Webkit浏览器 (Chrome, Safari, Edge)
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent; // 轨道透明
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    }
+    &::-webkit-scrollbar-button {
+        display: none ;
+    }
+    // 确保内部所有元素的滚动条箭头也被隐藏（包括Ant Design Menu组件）
+    // :global(*) {
+    //     &::-webkit-scrollbar-button {
+    //         display: none;
+    //     }
+    // }
+    // 标准滚动条样式 (Firefox)(会影响谷歌上下滚动箭头的隐藏)
+    // scrollbar-width: thin;
+    // scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+.mainContainer{
+    // 高度计算：100vh - Header(64px) - Footer(48px) - 上下margin(8px * 2)
+    height: calc(100vh - 64px - 48px - 16px);
+    overflow: auto;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 8px;
+    // 自定义滚动条样式
+    &::-webkit-scrollbar-button{
+        display: none;
+    }
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+    }
+    &::-webkit-scrollbar-track{
+        background: transparent;
+    } 
+    // 确保Content组件能够正确显示内容
+    :global(.ant-layout-content) {
+        height: 100%;
+        padding: 0;
+    }
+}
