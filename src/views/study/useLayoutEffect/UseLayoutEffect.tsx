@@ -86,7 +86,7 @@ export default function UseLayoutEffect() {
       <h2>示例2:跳转到指定的位置</h2>
       <div ref={scrollRef} style={{ height: '100px', overflowY: 'scroll' }}>
         {[...Array(100)].map((_, i) => (
-          <div key={i}>line {i}</div>
+          <div key={i+Math.random()}>line {i}</div>
         ))}
       </div>
       <hr />

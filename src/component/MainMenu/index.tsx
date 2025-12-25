@@ -58,11 +58,12 @@ const MainMenu: React.FC = () => {
 
   // 根据当前路径展开全部父级，支持多级菜单
   useEffect(() => {
+    // console.log('---调用--currentRoute.pathname',currentRoute.pathname)
+    // console.log('---调用--currentRoute.pathname',menuList)
     const matchedPath = findNameByPath<MenuItem>(menuList, currentRoute.pathname)
     const parentKeys = matchedPath.slice(0, -1).map((item) => item.key)
     setOpenkeys(parentKeys)
-  }, [menuList, currentRoute.pathname])
-
+  }, [])
   const handleOpenChange = (keys: string[]) => {
     setOpenkeys(keys)
   }
