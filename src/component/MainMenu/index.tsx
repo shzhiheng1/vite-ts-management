@@ -14,11 +14,7 @@ import {
   UserOutlined
 } from '@ant-design/icons'
 
-// import type { MenuProps } from 'antd';
-type RenderMenuItem = Omit<MenuItem, 'icon' | 'children'> & {
-  icon?: React.ReactNode
-  children?: RenderMenuItem[]
-}
+import type { MenuProps } from 'antd';
 
 const iconMap: Record<IconKey, React.ReactNode> = {
   DesktopOutlined: <DesktopOutlined />,
@@ -27,12 +23,12 @@ const iconMap: Record<IconKey, React.ReactNode> = {
   FileOutlined: <FileOutlined />
 }
 
-const attachIcons = (data: MenuItem[]): RenderMenuItem[] =>
+const attachIcons = (data: MenuItem[]): MenuProps['items'] =>
   data.map(({ icon, children, ...rest }) => ({
     ...rest,
     icon: icon ? iconMap[icon] : undefined,
-    children: children ? attachIcons(children) : undefined
-  }))
+    children: children ? (attachIcons(children) as any) : undefined
+  })) as MenuProps['items']
 const MainMenu: React.FC = () => {
   let { menus } = useAppSelector((state) => ({
     menus:
@@ -51,7 +47,14 @@ const MainMenu: React.FC = () => {
   const currentRoute = useLocation()
   // 点击菜单
   const handleMenu = (e: { key: string }) => {
-    navigate(e.key)
+    // 判断是否为外部链接（以 http:// 或 https:// 开头）
+    if (e.key.startsWith('http://') || e.key.startsWith('https://')) {
+      // 在新标签页打开外部链接
+      window.open(e.key, '_blank')
+    } else {
+      // 内部路由跳转
+      navigate(e.key)
+    }
   }
   // 展开项
   const [openKeys, setOpenkeys] = useState<string[]>([])

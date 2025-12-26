@@ -86,6 +86,10 @@ export const items: MenuItem[] = [
       {
         label: '精品推荐',
         key: '/discover/recommend'
+      },
+      {
+        label: 'Ant Design 官网',
+        key: 'https://ant.design'
       }
     ]
   },
