@@ -47,8 +47,27 @@ const MainMenu: React.FC = () => {
   const currentRoute = useLocation()
   // 点击菜单
   const handleMenu = (e: { key: string }) => {
-    // 判断是否为外部链接（以 http:// 或 https:// 开头）
-    if (e.key.startsWith('http://') || e.key.startsWith('https://')) {
+    // 从菜单列表中查找对应的菜单项，获取 isinlink 属性
+    const findMenuItem = (items: MenuItem[], key: string): MenuItem | null => {
+      for (const item of items) {
+        if (item.key === key) {
+          return item
+        }
+        if (item.children) {
+          const found = findMenuItem(item.children, key)
+          if (found) return found
+        }
+      }
+      return null
+    }
+    
+    const menuItem = findMenuItem(menuList, e.key)
+    
+    // 判断是否为内嵌链接
+    if (menuItem?.isinlink) {
+      // 使用菜单项的 key 作为路由参数（key 应该是 /document/xxx 格式）
+      navigate(e.key)
+    } else if (e.key.startsWith('http://') || e.key.startsWith('https://')) {
       // 在新标签页打开外部链接
       window.open(e.key, '_blank')
     } else {

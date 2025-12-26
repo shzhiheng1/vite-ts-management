@@ -6,30 +6,42 @@ import { removeMenus } from '@/reduxjsToolkitStore/modules/user/userSlice.js'
 import { useAppSelector, useAppDispatch } from '@/reduxjsToolkitStore/store.js'
 import { useLocation } from 'react-router-dom'
 import { findNameByPath } from '@/utils/index.js'
+import { items as defaultMenus, type MenuItem } from '@/assets/data/menu.js'
 import { useState, useEffect } from 'react'
 const LayoutHeader = () => {
   const dispatch = useAppDispatch()
   const location = useLocation()
   const storeMenus = useAppSelector((state) => state.user.menus)
-  const menus =
-    storeMenus.length > 0 ? storeMenus : sessionStorage.getItem('menus') || ''
   const [resetMemus, setResetMemus] = useState<{ title: string }[]>([])
+  
   useEffect(() => {
-    if (menus || menus.length > 0) {
-      const checkMenus = findNameByPath(
-        typeof menus === 'string' ? JSON.parse(menus) : menus,
-        location.pathname
-      )
-      const _resetMenus = checkMenus.map((item) => {
-        return {
-          title: item.label
-        }
-      })
-      setResetMemus(_resetMenus)
+    // 获取菜单数据：优先使用 store，其次 sessionStorage，最后使用默认菜单
+    let menuList: MenuItem[] = []
+    if (storeMenus.length > 0) {
+      menuList = storeMenus as MenuItem[]
     } else {
-      console.log('--menus没有值---')
+      const storedMenus = sessionStorage.getItem('menus')
+      if (storedMenus) {
+        try {
+          menuList = JSON.parse(storedMenus) as MenuItem[]
+        } catch (e) {
+          console.error('解析菜单数据失败:', e)
+          menuList = defaultMenus
+        }
+      } else {
+        menuList = defaultMenus
+      }
     }
-  }, [menus, location])
+    
+    // 根据当前路径查找菜单路径
+    const checkMenus = findNameByPath<MenuItem>(menuList, location.pathname)
+    const _resetMenus = checkMenus.map((item) => {
+      return {
+        title: item.label
+      }
+    })
+    setResetMemus(_resetMenus)
+  }, [storeMenus, location.pathname])
   //   console.log('-----匹配到菜单----', checkMenus)
   // const resetMemus = checkMenus.map((item) => {
   //   return {

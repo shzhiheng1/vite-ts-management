@@ -8,7 +8,9 @@ export interface MenuItem {
   label: string
   key: string
   icon?: IconKey
-  children?: MenuItem[]
+  children?: MenuItem[],
+  isinlink?:boolean
+  url?: string // 当 isinlink 为 true 时，存储实际要展示的URL
 }
 
 export const items: MenuItem[] = [
@@ -88,8 +90,21 @@ export const items: MenuItem[] = [
         key: '/discover/recommend'
       },
       {
-        label: 'Ant Design 官网',
+        label: 'antd官网-外链接',
         key: 'https://ant.design'
+      }
+    ]
+  },
+  {  
+    label:'文档',
+    key:'document',
+    icon:'FileOutlined',
+    children:[
+      {
+        label:'react 中文官网',
+        key:'/document/react',
+        isinlink:true,
+        url: 'https://zh-hans.react.dev' // 存储实际要展示的URL
       }
     ]
   },

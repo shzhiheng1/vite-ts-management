@@ -58,6 +58,7 @@ const UseLayoutEffect = lazy(
 const UseRef = lazy(() => import('@/views/study/useRef/UseRef.js'))
 const UseMemo = lazy(() => import('@/views/study/useMemo/UseMemo'))
 const UseCallback = lazy(() => import('@/views/study/useCallback/UseCallback'))
+const Document=lazy(()=>import('@/views/document/Document'))
 
 // 封装懒加载loading
 const LazyLoading = (comp: JSX.Element) => (
@@ -152,6 +153,10 @@ const routers: RouteObject[] = [
       {
         path: '/study/useCallback',
         element: LazyLoading(<UseCallback />)
+      },
+      {
+        path:'/document/:id',
+        element:LazyLoading(<Document />)
       }
     ]
   },
