@@ -9,7 +9,7 @@ export interface MenuItem {
   key: string
   icon?: IconKey
   children?: MenuItem[],
-  isinlink?:boolean
+  isinlink?:string
   url?: string // 当 isinlink 为 true 时，存储实际要展示的URL
 }
 
@@ -103,7 +103,7 @@ export const items: MenuItem[] = [
       {
         label:'react 中文官网',
         key:'/document/react',
-        isinlink:true,
+        isinlink:"true",
         url: 'https://zh-hans.react.dev' // 存储实际要展示的URL
       }
     ]

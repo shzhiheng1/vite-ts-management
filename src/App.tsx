@@ -25,9 +25,10 @@
  * 数组路由书写形式
  *
  * **/
-import { useRoutes, useLocation, useNavigate } from 'react-router-dom'
+import { useRoutes, useLocation, useNavigate, RouteObject } from 'react-router-dom'
 import { useEffect } from 'react'
-import routers from './router/index.js'
+import defaultRouters from './router/index.js'
+import {useAppSelector} from '@/reduxjsToolkitStore/store.js'
 
 /********做路由守卫**********/
 
@@ -50,11 +51,22 @@ function Page1() {
 }
 
 function BeforeRouteEnter() {
-  const element = useRoutes(routers)
-  // const navigateTo=useNavigate()
-  // const token = localStorage.getItem('vite-ts-management-token') || ''
   const token = sessionStorage.getItem('vite-ts-management-token') || ''
 
+  let { routers } = useAppSelector((state) => ({
+    routers:
+        state.user.routers.length > 0
+          ? (state.user.routers as RouteObject[])
+          : (JSON.parse(
+              sessionStorage.getItem('routers') || '[]'
+            ) as RouteObject[])
+    }))
+    console.log('------routers-----',routers)
+  const routersList = routers && routers.length > 0 ? routers : defaultRouters
+  console.log('------routersList-----',routersList)
+
+  const element = useRoutes(routersList)
+  
   const location = useLocation()
   /*******第一种写法*********/
   // useEffect(()=>{
@@ -77,6 +89,7 @@ function BeforeRouteEnter() {
   if (!token && location.pathname !== '/login') {
     return <Login />
   }
+  console.log('~~~页面~',element)
   // 3.其他
   return <>{element}</>
 }

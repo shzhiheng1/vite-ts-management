@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-
+// 备份
 /**
  *第一种实现路由：组价式路由写法(已经不常用了)
  *
@@ -35,7 +35,7 @@ import Layout from '@/views/layout/Layout.js'
 // import About from "@/views/about/About.js"
 
 // 懒加载 lazy
-import { lazy, ReactNode, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import Login from '@/views/login/Login.js'
 // import Page1 from '@/views/page1/Page1.js'
 const LazyUser = lazy(() => import('@/views/user/User.js'))
@@ -86,18 +86,7 @@ const LazyLoading = (comp: JSX.Element) => (
  * 
  * ***/
 
-/**添加权限路由***/ 
-
-interface IRouteItem{
-  path?: string;
-  element?:ReactNode | null;
-  index?: boolean;
-  children?: IRouteItem[];
-  title?:string;
-  name?:string;
-  roles?:string[];
-}
-const routers:RouteObject[]=[
+const routers: RouteObject[] = [
   {
     //配置默认路由
     path: '/',
@@ -136,6 +125,18 @@ const routers:RouteObject[]=[
       {
         path: '/page4/page402',
         element: LazyLoading(<Page402 />)
+      },
+      {
+        path: '/demo',
+        element: LazyLoading(<Demo />)
+      },
+      {
+        path: '/discover/recommend',
+        element: LazyLoading(<Remcommend />)
+      },
+      {
+        path: '/discover/recommend/musicDetail/:id',
+        element: LazyLoading(<MusicDetail />)
       },
       {
         path: '/study/useLayoutEffect',
@@ -181,27 +182,4 @@ const routers:RouteObject[]=[
     element: <Navigate to="/404" />
   }
 ]
-export const dynamicRouters:IRouteItem=
-  {
-    path:'/',
-    element: <Layout />,
-    children:[
-      {
-        path: '/demo',
-        element: LazyLoading(<Demo />),
-        roles:['demo']
-      },
-      {
-        path: '/discover/recommend',
-        element: LazyLoading(<Remcommend />),
-        roles:['recommend']
-      },
-      {
-        path: '/discover/recommend/musicDetail/:id',
-        element: LazyLoading(<MusicDetail />),
-        roles:['recommend']
-      },
-    ]
-  }
-
 export default routers
