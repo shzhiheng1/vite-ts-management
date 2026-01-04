@@ -45,7 +45,6 @@ const userSlice = createSlice({
       sessionStorage.removeItem('menus')
       sessionStorage.removeItem('vite-ts-management-token')
       sessionStorage.removeItem('userRoles')
-      sessionStorage.removeItem('routers')
     },
     changeUserRoles(state, { payload }) {
       state.userRoles = payload
@@ -99,7 +98,7 @@ export const getAsyncMenus = createAsyncThunk(
       }
     }
     
-    // 如果还是没有，使用默认值
+    // 如果还是没有，使用默认值(接口返回过来的)
     if (userRoles.length === 0) {
       userRoles = ['demo']
     }
@@ -124,8 +123,8 @@ export const getAsyncMenus = createAsyncThunk(
           const _filterPath=allDynamicRoutersPath?.filter(item=>!_dynamicRouters?.map(i=>i.path).includes(item))||[]
           // 过滤后的路由菜单
           const _filterMenus=filterMenus(items,_filterPath as string[])
-          console.log('----要剔除的路由---',_filterPath)
-          console.log('----剔除过后的菜单---',_filterMenus)
+          // console.log('----要剔除的路由---',_filterPath)
+          // console.log('----剔除过后的菜单---',_filterMenus)
           const params={
             _dynamicRouters,
             _filterMenus,

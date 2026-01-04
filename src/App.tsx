@@ -25,7 +25,7 @@
  * 数组路由书写形式
  *
  * **/
-import { useRoutes, useLocation, useNavigate, RouteObject } from 'react-router-dom'
+import { useRoutes, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import defaultRouters from './router/index.js'
 import {useAppSelector, useAppDispatch} from '@/reduxjsToolkitStore/store.js'
@@ -68,9 +68,9 @@ function BeforeRouteEnter() {
     }
   }, [token, routers.length, dispatch])
 
-  console.log('------routers-----',routers)
+  // console.log('------routers-----',routers)
   const routersList = routers && routers.length > 0 ? routers : defaultRouters
-  console.log('------routersList-----',routersList)
+  // console.log('------routersList-----',routersList)
 
   const element = useRoutes(routersList)
   /*******第一种写法*********/
@@ -94,7 +94,6 @@ function BeforeRouteEnter() {
   if (!token && location.pathname !== '/login') {
     return <Login />
   }
-  console.log('~~~页面~',element)
   // 3.其他
   return <>{element}</>
 }
