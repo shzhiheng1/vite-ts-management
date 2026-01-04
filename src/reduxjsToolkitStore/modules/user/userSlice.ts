@@ -9,11 +9,27 @@ interface IdefultInt {
   routers: any[]
   userRoles:string[]
 }
-// 初始state
+
+// 安全地从 sessionStorage 恢复数据
+const getStoredData = <T>(key: string, defaultValue: T): T => {
+  try {
+    const stored = sessionStorage.getItem(key)
+    if (stored) {
+      return JSON.parse(stored) as T
+    }
+  } catch (error) {
+    console.error(`解析 ${key} 数据失败:`, error)
+    // 清除损坏的数据
+    sessionStorage.removeItem(key)
+  }
+  return defaultValue
+}
+
+// 初始state - 从 sessionStorage 恢复 menus 和 userRoles（但不恢复 routers，因为包含 React 元素）
 const initialState: IdefultInt = {
-  menus: [],//菜单
-  routers: [],//路由
-  userRoles:[]//角色
+  menus: getStoredData<MenuItem[]>('menus', []),//菜单
+  routers: [],//路由 - 不从不恢复，需要重新构建
+  userRoles: getStoredData<string[]>('userRoles', [])//角色
 }
 // 创建切片
 const userSlice = createSlice({
@@ -38,7 +54,9 @@ const userSlice = createSlice({
     changeRoutes(state, { payload }) {
       console.log('------cangeg----',payload)
       state.routers = payload
-      sessionStorage.setItem('routers', JSON.stringify(payload))
+      // 注意：不能将包含 React 元素的路由配置保存到 sessionStorage
+      // React 元素无法通过 JSON 序列化，会导致刷新后路由无法正常渲染
+      // 路由配置应该在需要时重新构建，而不是从 sessionStorage 恢复
     },
   }
 })
@@ -63,13 +81,33 @@ const filterMenus=(menus:MenuItem[],paths:string[]):MenuItem[] =>{
 // 异步获取menus数据
 export const getAsyncMenus = createAsyncThunk(
   'user/menus',
-  async (arg: { loginType?: string }, { dispatch }) => {
+  async (arg: { loginType?: string }, { dispatch, getState }) => {
     /***正常情况下此处的数据应该有后端提供***/
+    // 尝试从 Redux state 或 sessionStorage 获取已保存的用户角色
+    const state = getState() as any
+    let userRoles: string[] = state?.user?.userRoles || []
+    
+    // 如果 state 中没有，尝试从 sessionStorage 读取
+    if (userRoles.length === 0) {
+      try {
+        const storedRoles = sessionStorage.getItem('userRoles')
+        if (storedRoles) {
+          userRoles = JSON.parse(storedRoles)
+        }
+      } catch (error) {
+        console.error('解析用户角色失败:', error)
+      }
+    }
+    
+    // 如果还是没有，使用默认值
+    if (userRoles.length === 0) {
+      userRoles = ['demo']
+    }
+    
     return new Promise((resolve) => {
       setTimeout(() => {
         // if (arg.loginType === 'admin') {
-          // 假设后端返回的用户角色数据
-          const userRoles=['demo']
+          // 使用已保存的用户角色或默认值
           // 获取所有动态路由的path数组
           const allDynamicRoutersPath=dynamicRouters.children?.map(item=>item.path)
           // 过滤出动态路由中角色与用户角色匹配的路由

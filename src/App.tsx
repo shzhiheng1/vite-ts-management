@@ -28,7 +28,8 @@
 import { useRoutes, useLocation, useNavigate, RouteObject } from 'react-router-dom'
 import { useEffect } from 'react'
 import defaultRouters from './router/index.js'
-import {useAppSelector} from '@/reduxjsToolkitStore/store.js'
+import {useAppSelector, useAppDispatch} from '@/reduxjsToolkitStore/store.js'
+import { getAsyncMenus } from '@/reduxjsToolkitStore/modules/user/userSlice.js'
 
 /********做路由守卫**********/
 
@@ -52,22 +53,26 @@ function Page1() {
 
 function BeforeRouteEnter() {
   const token = sessionStorage.getItem('vite-ts-management-token') || ''
+  const dispatch = useAppDispatch()
+  const location = useLocation()
+  
+  const { routers } = useAppSelector((state) => ({
+    routers: state.user.routers
+  }))
 
-  let { routers } = useAppSelector((state) => ({
-    routers:
-        state.user.routers.length > 0
-          ? (state.user.routers as RouteObject[])
-          : (JSON.parse(
-              sessionStorage.getItem('routers') || '[]'
-            ) as RouteObject[])
-    }))
-    console.log('------routers-----',routers)
+  // 刷新页面时，如果 token 存在但路由为空，重新获取菜单和路由
+  useEffect(() => {
+    if (token && routers.length === 0) {
+      // 重新获取菜单和路由（会从 sessionStorage 恢复 userRoles，然后重新构建路由）
+      dispatch(getAsyncMenus({ loginType: 'default' }))
+    }
+  }, [token, routers.length, dispatch])
+
+  console.log('------routers-----',routers)
   const routersList = routers && routers.length > 0 ? routers : defaultRouters
   console.log('------routersList-----',routersList)
 
   const element = useRoutes(routersList)
-  
-  const location = useLocation()
   /*******第一种写法*********/
   // useEffect(()=>{
   //     //  1.token存在，且访问登录页面，跳转到page1

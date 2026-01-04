@@ -30,14 +30,32 @@ const attachIcons = (data: MenuItem[]): MenuProps['items'] =>
     children: children ? (attachIcons(children) as any) : undefined
   })) as MenuProps['items']
 const MainMenu: React.FC = () => {
-  let { menus } = useAppSelector((state) => ({
-    menus:
-      state.user.menus.length > 0
-        ? (state.user.menus as MenuItem[])
-        : (JSON.parse(
-            sessionStorage.getItem('menus') || '[]'
-          ) as MenuItem[])
+  const { menus: storeMenus } = useAppSelector((state) => ({
+    menus: state.user.menus
   }))
+  
+  // 安全地获取菜单数据：优先使用 store，其次从 sessionStorage 读取
+  let menus: MenuItem[] = []
+  
+  if (storeMenus && storeMenus.length > 0) {
+    menus = storeMenus as MenuItem[]
+  } else {
+    // 如果 store 中没有，尝试从 sessionStorage 读取
+    try {
+      const storedMenus = sessionStorage.getItem('menus')
+      if (storedMenus) {
+        const parsed = JSON.parse(storedMenus) as MenuItem[]
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          menus = parsed
+        }
+      }
+    } catch (error) {
+      console.error('解析菜单数据失败:', error)
+      // 清除损坏的数据
+      sessionStorage.removeItem('menus')
+    }
+  }
+  
   const menuList = menus && menus.length > 0 ? menus : defaultMenus
   const renderedMenus = useMemo(() => attachIcons(menuList), [menuList])
   // menus?.map((item: any) => (item.icon = <UserOutlined />))
